@@ -1,862 +1,785 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yue Cao - Academic Profile</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
-            color: #2c3e50;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 40px;
-            padding: 40px;
-            min-height: 100vh;
-        }
-
-        /* Left Column - Profile */
-        .left-column {
-            position: sticky;
-            top: 40px;
-            height: fit-content;
-        }
-
-        .profile-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            text-align: center;
-        }
-
-        .profile-image {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 20px;
-            border: 4px solid #3498db;
-            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
-        }
-
-        .profile-card h1 {
-            font-family: 'Crimson Text', serif;
-            font-size: 28px;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 8px;
-        }
-
-        .profile-card .title {
-            font-size: 14px;
-            color: 444;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .contact-info {
-            text-align: left;
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid #ecf0f1;
-        }
-
-        .contact-item {
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-
-        .contact-item strong {
-            display: block;
-            color: #34495e;
-            font-weight: 600;
-            margin-bottom: 4px;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .contact-item span {
-            color: 444;
-        }
-
-        .social-links {
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid #ecf0f1;
-        }
-
-        .social-link {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            transition: background 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: #2980b9;
-        }
-
-        /* Right Column - Content */
-        .right-column {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
-
-        .section {
-            background: white;
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .section h2 {
-            font-family: 'Crimson Text', serif;
-            font-size: 32px;
-            color: #2c3e50;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-        }
-
-        /* About Section */
-        .about-text {
-            font-size: 16px;
-            color: #333;
-            line-height: 1.8;
-        }
-
-        /* Dual Timeline */
-        .timeline {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, #3498db 0%, #9b59b6 100%);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 30px;
-            padding: 20px;
-            width: 45%;
-            border-radius: 8px;
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .timeline-item.left {
-            left: 0;
-            text-align: right;
-        }
-
-        .timeline-item.right {
-            left: 55%;
-            text-align: left;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            border: 3px solid white;
-        }
-
-        .timeline-item.education::before {
-            background: #3498db;
-            box-shadow: 0 0 0 2px #3498db;
-        }
-
-        .timeline-item.work::before {
-            background: #e74c3c;
-            box-shadow: 0 0 0 2px #e74c3c;
-        }
-
-        .timeline-item.left::before {
-            right: -32px;
-        }
-
-        .timeline-item.right::before {
-            left: -32px;
-        }
-
-        .timeline-item.education {
-            border-left: 4px solid #3498db;
-        }
-
-        .timeline-item.work {
-            border-left: 4px solid #e74c3c;
-        }
-
-        .timeline-date {
-            font-size: 14px;
-            color: #3498db;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .timeline-item.work .timeline-date {
-            color: #e74c3c;
-        }
-
-        .timeline-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-
-        .timeline-institution {
-            font-size: 15px;
-            color: 444;
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-
-        .timeline-description {
-            font-size: 14px;
-            color: #333;
-            line-height: 1.6;
-        }
-
-
-        /* Skills Section */
-        .skills-intro {
-            font-size: 16px;
-            color: #333;
-            line-height: 1.25;
-            margin-bottom: 25px;
-        }
-
-        .skills-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .skill-category {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 5px;
-            border-left: 4px solid #3498db;
-        }
-
-        .skill-category h3 {
-            font-family: 'Crimson Text', serif;
-            font-size: 18px;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        .skill-category p {
-            font-size: 16px;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* Research Projects Section */
-        .project-item {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 30px;
-            border-left: 4px solid #2ecc71;
-            margin-bottom: 30px;
-        }
-
-        .project-title {
-            font-family: 'Crimson Text', serif;
-            font-size: 24px;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-
-        .project-image-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .project-image {
-            width: 400px;
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            object-fit: cover;
-        }
-
-        .project-description {
-            margin: 20px 0;
-        }
-
-        .project-description p {
-            font-size: 16px;
-            color: #333;
-            line-height: 1.8;
-        }
-
-        .project-publications {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #e9ecef;
-        }
-
-        .project-publications h4 {
-            font-family: 'Crimson Text', serif;
-            font-size: 18px;
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        /* Media Grid Styling */
-        .media-grid {
-            margin: 20px 0;
-        }
-
-        .media-row {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .media-item {
-            text-align: center;
-            flex: 1;
-            min-width: 250px;
-            max-width: 400px;
-        }
-
-        .media-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            object-fit: cover;
-        }
-
-        .media-item video {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            max-height: 250px;
-        }
-
-        .media-caption {
-            font-family: 'Calibri', sans-serif;
-            font-weight: bold;
-            color: #8e44ad;
-            font-size: 16px;
-            margin-top: 10px;
-            line-height: 1.3;
-        }
-
-        /* Publications Section */
-        .publications-list {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .publication-item {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 5px;
-            border-left: 4px solid #3498db;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .publication-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .publication-number {
-            font-weight: 700;
-            color: #3498db;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-
-        .publication-content {
-            font-size: 15px;
-            color: #333;
-            line-height: 1.25;
-        }
-
-        .publication-content .authors {
-            font-weight: 600;
-        }
-
-        .publication-content .title {
-            font-style: italic;
-            margin: 0 4px;
-        }
-
-        .publication-content .journal {
-            color: 444;
-        }
-
-        /* Awards Section */
-        .awards-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .award-item {
-            background: linear-gradient(135deg, #fff7e6 0%, #fff3d3 100%);
-            border-radius: 8px;
-            padding: 20px;
-            border-left: 4px solid #f39c12;
-        }
-
-        .award-year {
-            font-weight: 700;
-            color: #d68910;
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
-
-        .award-title {
-            font-family: 'Crimson Text', serif;
-            font-size: 18px;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 8px;
-        }
-
-        .award-description {
-            font-size: 14px;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        @media (max-width: 1024px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-
-            .left-column {
-                position: static;
-            }
-
-            .skills-list {
-                grid-template-columns: 1fr;
-            }
-
-            /* Mobile timeline adjustments */
-            .timeline::before {
-                left: 20px;
-                transform: none;
-            }
-
-            .timeline-item {
-                width: 100%;
-                left: 0 !important;
-                text-align: left !important;
-                margin-left: 40px;
-            }
-
-            .timeline-item::before {
-                left: -32px !important;
-                right: auto !important;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yue (Troy) Cao</title>
+<meta name="description" content="Yue (Troy) Cao, Research Fellow in Mechanical Engineering at the University of Michigan. Intelligent manufacturing: robotics, generative AI, and control for welding and additive manufacturing.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2212%22 fill=%22%2300274C%22/%3E%3Ctext x=%2232%22 y=%2242%22 font-family=%22Georgia,serif%22 font-size=%2228%22 font-weight=%22700%22 fill=%22%23FFCB05%22 text-anchor=%22middle%22%3EYC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #00274C;          /* Michigan blue */
+  --blue-2: #1d4f7d;
+  --maize: #FFCB05;         /* Michigan maize, used sparingly */
+  --ink: #1f2933;
+  --muted: #5b6672;
+  --line: #e2e6eb;
+  --bg: #ffffff;
+  --bg-soft: #f5f7fa;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(16, 24, 40, .06), 0 1px 3px rgba(16, 24, 40, .08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body { font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; font-size: 16px; }
+a { color: var(--blue-2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img, video { display: block; max-width: 100%; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+header.top { position: sticky; top: 0; z-index: 50; background: var(--blue); color: #fff; }
+header.top .wrap { display: flex; align-items: center; gap: 24px; height: 60px; }
+.brand { font-family: "Source Serif 4", Georgia, serif; font-size: 21px; font-weight: 600; color: #fff; white-space: nowrap; }
+.brand:hover { text-decoration: none; }
+nav.menu { display: flex; gap: 20px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+nav.menu::-webkit-scrollbar { display: none; }
+nav.menu a { color: #dfe6ee; font-size: 14.5px; font-weight: 500; white-space: nowrap; padding: 4px 0; border-bottom: 2px solid transparent; }
+nav.menu a:hover { color: #fff; text-decoration: none; border-bottom-color: var(--maize); }
+
+/* About */
+.hero { padding: 44px 0 36px; border-bottom: 1px solid var(--line); }
+.hero .wrap { display: grid; grid-template-columns: 190px 1fr; gap: 40px; align-items: center; }
+.hero img.photo { width: 190px; height: 190px; border-radius: 50%; object-fit: cover; object-position: center 30%; border: 4px solid #fff; box-shadow: 0 0 0 2px var(--blue); }
+.hero h1 { font-family: "Source Serif 4", Georgia, serif; font-size: 38px; font-weight: 600; color: var(--blue); line-height: 1.15; }
+.hero .role { font-size: 17px; color: var(--muted); margin: 6px 0 14px; }
+.hero .role strong { color: var(--ink); font-weight: 600; }
+.hero p.bio { max-width: 780px; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.btn { display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border: 1px solid var(--blue); border-radius: 999px; color: var(--blue); font-size: 14px; font-weight: 600; background: #fff; }
+.btn:hover { background: var(--blue); color: #fff; text-decoration: none; }
+.btn.solid { background: var(--blue); color: #fff; }
+.btn.solid:hover { background: var(--blue-2); }
+.btn svg { width: 15px; height: 15px; fill: currentColor; }
+
+/* Sections */
+section { padding: 48px 0; }
+section.soft { background: var(--bg-soft); }
+h2.sec { font-family: "Source Serif 4", Georgia, serif; font-size: 27px; font-weight: 600; color: var(--blue); margin-bottom: 22px; display: flex; align-items: center; gap: 12px; }
+h2.sec::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+h2.sec .bar { width: 6px; height: 24px; background: var(--maize); border-radius: 2px; }
+h3.sub { font-size: 14px; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); font-weight: 600; margin: 4px 0 12px; }
+.two { display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; }
+
+/* Experience timeline */
+.timeline { position: relative; margin-left: 8px; }
+.timeline::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+.tl { position: relative; padding: 0 0 18px 26px; }
+.tl:last-child { padding-bottom: 0; }
+.tl::before { content: ""; position: absolute; left: -6px; top: 5px; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 3px solid var(--blue); }
+.tl.edu::before { border-color: var(--maize); }
+.tl .w { font-size: 13.5px; font-weight: 600; color: var(--blue); }
+.tl .r { font-weight: 600; }
+.tl .o { font-size: 14.5px; color: var(--muted); }
+.legend { display: flex; gap: 18px; font-size: 13px; color: var(--muted); margin: -8px 0 16px; }
+.legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; border: 3px solid var(--blue); margin-right: 6px; vertical-align: -1px; }
+.legend i.e { border-color: var(--maize); }
+
+/* Honors */
+.honor { background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--maize); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 14px; }
+.honor b { display: block; color: var(--blue); }
+.honor .y { font-size: 13px; font-weight: 600; color: var(--muted); }
+.honor span.t { display: block; font-size: 14.5px; color: var(--muted); margin-top: 4px; }
+
+/* Research: area filter */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.filters button { font: inherit; font-size: 14px; font-weight: 600; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--muted); cursor: pointer; }
+.filters button:hover { border-color: var(--blue); color: var(--blue); }
+.filters button[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: #fff; }
+.filters button .n { font-weight: 500; opacity: .75; margin-left: 5px; }
+
+/* Research: small cards that expand */
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; grid-auto-flow: dense; }
+.card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: box-shadow .15s ease, transform .15s ease; }
+.card:not(.open):hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(16, 24, 40, .10); }
+.card:focus-visible { outline: 3px solid var(--maize); outline-offset: 2px; }
+.card.hidden { display: none; }
+.thumb { aspect-ratio: 16 / 10; background: var(--bg-soft); border-bottom: 1px solid var(--line); overflow: hidden; }
+.thumb video, .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumb.contain video, .thumb.contain img { object-fit: contain; background: #fff; }
+.thumb.placeholder { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; color: var(--blue); background: linear-gradient(135deg, #eef3f8, #f8fafc); font-size: 12.5px; font-weight: 600; }
+.thumb.placeholder svg { width: 44px; height: 44px; fill: none; stroke: var(--blue); stroke-width: 1.4; }
+.cbody { padding: 12px 14px 14px; display: flex; flex-direction: column; flex: 1; }
+.meta { font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; gap: 6px; }
+.meta .date { font-weight: 600; color: var(--blue); }
+.card h4 { font-size: 14.5px; line-height: 1.35; margin: 5px 0 8px; color: var(--ink); }
+.areas { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; }
+.area { font-size: 11px; padding: 1px 7px; border-radius: 4px; background: #eef3f8; color: var(--blue-2); font-weight: 500; }
+.badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 4px; vertical-align: 1px; }
+.badge.award { background: #fff4c2; color: #6b5200; border: 1px solid #f2d65c; }
+.badge.status { background: #eef3f8; color: var(--blue-2); }
+
+/* Expanded card */
+.detail { display: none; }
+.card.open { grid-column: 1 / -1; cursor: default; border-color: #c9d3de; box-shadow: 0 10px 30px rgba(0, 39, 76, .12); }
+.card.open .thumb, .card.open .cbody { display: none; }
+.card.open .detail { display: block; }
+.dhead { background: var(--blue); color: #fff; padding: 14px 56px 14px 22px; position: relative; }
+.dhead h3 { font-family: "Source Serif 4", Georgia, serif; font-size: 21px; font-weight: 600; line-height: 1.3; }
+.dhead .dmeta { font-size: 13px; color: #cfd9e4; margin-top: 2px; }
+.dclose { position: absolute; top: 12px; right: 12px; width: 34px; height: 34px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .14); color: #fff; font-size: 20px; line-height: 34px; cursor: pointer; }
+.dclose:hover { background: rgba(255, 255, 255, .28); }
+.dbody { display: grid; grid-template-columns: 1.25fr 1fr; gap: 26px; padding: 20px 22px 24px; }
+.dbody.single { grid-template-columns: 1fr; }
+.dtext p { font-size: 15px; margin-bottom: 11px; }
+.dtext h5 { font-size: 12.5px; text-transform: uppercase; letter-spacing: .7px; color: var(--muted); margin: 14px 0 8px; }
+.dtext ol { padding-left: 18px; font-size: 14px; }
+.dtext ol li { margin-bottom: 6px; }
+.gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start; }
+.gallery figure { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.gallery figure.wide { grid-column: 1 / -1; }
+.gallery video, .gallery img { width: 100%; background: #fff; }
+.gallery figcaption { font-size: 12.5px; color: var(--muted); padding: 6px 10px; }
+.me { font-weight: 600; }
+
+/* Simulation frame inside the WAAM card */
+.sim { margin: 0; }
+.sim-frame { aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; background: #11151c; border: 1px solid var(--line); }
+.sim-frame { position: relative; }
+.sim-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+.sim-cover { position: absolute; inset: 0; width: 100%; border: 0; cursor: pointer; background: linear-gradient(to top, rgba(0, 20, 40, .55), rgba(0, 20, 40, 0) 40%); color: #fff; font: inherit; font-size: 14px; font-weight: 600; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 46px; }
+.sim-cover:hover { background: linear-gradient(to top, rgba(0, 20, 40, .7), rgba(0, 20, 40, 0) 45%); }
+.sim-cover.off { display: none; }
+.sim figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.dbody.single .dtext { max-width: 900px; }
+
+/* Molten pool demo inside its expanded card */
+.demo-tabs, .proc-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.demo-tabs button, .proc-tabs button { font: inherit; font-size: 13px; font-weight: 600; padding: 5px 11px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg-soft); color: var(--muted); cursor: pointer; }
+.proc-tabs button { font-weight: 500; font-size: 12.5px; padding: 3px 9px; background: #fff; }
+.demo-tabs button[aria-selected="true"] { background: var(--blue); color: #fff; border-color: var(--blue); }
+.proc-tabs button[aria-selected="true"] { border-color: var(--blue); color: var(--blue); box-shadow: inset 0 -2px 0 var(--maize); }
+.demo-frame { aspect-ratio: 16 / 9; background: #fff; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.demo-frame video { width: 100%; height: 100%; object-fit: contain; }
+.demo-caption { font-size: 13.5px; color: var(--muted); margin-top: 8px; }
+.demo-caption b { color: var(--ink); }
+
+/* Publications */
+.pubs ol { list-style: none; }
+.pubs li { position: relative; padding: 9px 0 9px 44px; border-bottom: 1px solid var(--line); font-size: 15px; }
+.pubs li::before { content: attr(data-n); position: absolute; left: 0; top: 9px; font-weight: 600; color: var(--blue); font-size: 13.5px; }
+.pubs .me { text-decoration: underline; text-decoration-color: var(--maize); text-decoration-thickness: 2px; text-underline-offset: 2px; }
+.pubs .v { font-style: italic; color: var(--muted); }
+.pubs .code { font-size: 13px; font-weight: 600; margin-left: 6px; }
+details.conf { margin-top: 20px; }
+details.conf summary { cursor: pointer; font-weight: 600; color: var(--blue); }
+details.conf ol { margin-top: 8px; }
+
+/* Teaching & mentoring */
+.item { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.item:last-child { border-bottom: 0; }
+.item .h { display: flex; justify-content: space-between; gap: 12px; font-weight: 600; }
+.item .h span { font-weight: 500; color: var(--muted); font-size: 14px; white-space: nowrap; }
+.item .s { font-size: 14px; color: var(--muted); }
+.item .d { font-size: 14.5px; margin-top: 3px; }
+
+/* Contact */
+.contact { max-width: 760px; }
+.contact p { font-size: 16px; margin-bottom: 14px; }
+.contact .addr { font-size: 14.5px; color: var(--muted); margin-bottom: 16px; }
+
+footer { background: var(--blue); color: #cfd9e4; font-size: 13.5px; padding: 22px 0; }
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+@media (max-width: 1000px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+  .dbody { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px; }
+  header.top .wrap { gap: 14px; }
+  .brand { font-size: 18px; }
+  nav.menu { gap: 14px; }
+  .hero { padding: 30px 0 26px; }
+  .hero .wrap { grid-template-columns: 1fr; gap: 18px; }
+  .hero img.photo { width: 128px; height: 128px; }
+  .hero h1 { font-size: 30px; }
+  .two { grid-template-columns: 1fr; gap: 28px; }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .gallery { grid-template-columns: 1fr; }
+  .dbody { padding: 16px; }
+  section { padding: 36px 0; }
+  .pubs li { padding-left: 38px; }
+}
+@media (max-width: 420px) { .grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .card { transition: none; } }
+</style>
 </head>
 <body>
-    <div class="container">
-        <!-- Left Column - Profile -->
-        <div class="left-column">
-            <div class="profile-card">
-                <img src="profile.jpg" alt="Profile Photo" class="profile-image">
-                <h1>Yue Cao</h1>
-                <p class="title">Ph.D. Candidate & Research Assistant<br>Department of Electrical Engineering</p>
-                
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <strong>Email</strong>
-                        <span>yca247@uky.edu</span>
-                    </div>
-                    <div class="contact-item">
-                        <strong>Address</strong>
-                        <span>143 Graham Avenue<br>414D CRMS Bldg<br>Lexington, KY 40506</span>
-                    </div>
-                    <div class="contact-item">
-                        <strong>Research Interests</strong>
-                        <span>Intelligent Manufacturing, Deep Learning, Process Control, Human-Robot Interaction</span>
-                    </div>
-                </div>
 
-                <div class="social-links">
-                    <a href="https://scholar.google.com/citations?user=Ff6AFQUAAAAJ&hl=en" target="_blank" class="social-link">Google Scholar</a>
-                    <a href="YueCaoCV.pdf" target="_blank" class="social-link" style="margin-top: 10px;">Download CV</a>
-                </div>
-            </div>
-        </div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">Yue (Troy) Cao</a>
+    <nav class="menu" aria-label="Sections">
+      <a href="#experience">Experience</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#contact">Contact</a>
+      <a href="Yue_Cao_CV.pdf" target="_blank" rel="noopener">CV</a>
+    </nav>
+  </div>
+</header>
 
-        <!-- Right Column - Content -->
-        <div class="right-column">
-            <!-- About Section -->
-            <div class="section">
-                <h2>About</h2>
-                <div class="about-text">
-                    <p>I am Yue Cao, a 3rd-year Ph.D. candidate and research assistant in the Department of Electrical Engineering at the University of Kentucky. My research interests lie in applying <strong>deep learning</strong> and <strong>control theory</strong> to address <strong>intelligent manufacturing</strong> tasks, e.g., robotic <strong>welding</strong> and <strong>additive manufacturing</strong>. With rich experience in related fields (Bachelor's and Master's degrees, and industrial experience) and a strong publication record, I am deeply committed to advancing the integration of intelligent algorithms with physical manufacturing processes for adaptive and efficient production.</p>
-                    <p style="margin-top: 15px;">I have been recognized for my contributions to the field, being named a 2025 winner of the International Institute of Welding's Henry Granjon Award in the "Human Related Subjects" category for my innovative research in human-robot collaboration and intelligent welding processes.</p>
-                </div>
-                <div style="margin-top: 25px;">
-                    <a href="https://engr.uky.edu/news/graduate-student-receives-international-welding-award" target="_blank" class="social-link">Award News Article</a>
-                </div>
-            </div>
-
-            <!-- Education & Experience Section -->
-            <div class="section">
-                <h2>Education & Experience</h2>
-                <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; font-size: 14px;">
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                        <div style="width: 20px; height: 4px; background: #3498db; border-radius: 2px;"></div>
-                        <span>Education</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                        <div style="width: 20px; height: 4px; background: #e74c3c; border-radius: 2px;"></div>
-                        <span>Work Experience</span>
-                    </div>
-                </div>
-                <div class="timeline">
-                    <!-- Ph.D. Education - Left -->
-                    <div class="timeline-item left education">
-                        <div class="timeline-date">Jan. 2023 – Present</div>
-                        <div class="timeline-title">Ph.D. Candidate in Electrical Engineering</div>
-                        <div class="timeline-institution">University of Kentucky, Lexington, KY, USA</div>
-                        <div class="timeline-description">
-                            Currently a 3rd-year Ph.D. candidate and research assistant focusing on intelligent manufacturing, deep learning applications in robotic welding and additive manufacturing, and human-robot collaboration.
-                        </div>
-                    </div>
-
-                    <!-- TianTong Vision Work - Right -->
-                    <div class="timeline-item right work">
-                        <div class="timeline-date">Jul. 2022 – Dec. 2022</div>
-                        <div class="timeline-title">Autonomous Driving Engineer</div>
-                        <div class="timeline-institution">TianTong Vision Co., Ltd., Tianjin, China</div>
-                        <div class="timeline-description">
-                            Focused on path planning and vehicle body control algorithms.
-                        </div>
-                    </div>
-
-                    <!-- Weichai Power Work - Right -->
-                    <div class="timeline-item right work">
-                        <div class="timeline-date">Aug. 2021 – Jul. 2022</div>
-                        <div class="timeline-title">Motor Control Engineer</div>
-                        <div class="timeline-institution">Weichai Power Co., Ltd., Weifang, Shandong, China</div>
-                        <div class="timeline-description">
-                            Developed motor control algorithms and embedded software for powertrain systems.
-                        </div>
-                    </div>
-
-                    <!-- Master's Education - Left -->
-                    <div class="timeline-item left education">
-                        <div class="timeline-date">Sep. 2018 – Jun. 2021</div>
-                        <div class="timeline-title">M.Eng. in Materials Processing Engineering</div>
-                        <div class="timeline-institution">Tianjin University, Tianjin, China</div>
-                        <div class="timeline-description">
-                            Recommended Admission. Specialized in materials processing engineering with focus on manufacturing processes.
-                        </div>
-                    </div>
-
-                    <!-- Bachelor's Education - Left -->
-                    <div class="timeline-item left education">
-                        <div class="timeline-date">Sep. 2014 – Jun. 2018</div>
-                        <div class="timeline-title">B.Eng. in Material Forming and Control Engineering</div>
-                        <div class="timeline-institution">Tianjin University, Tianjin, China</div>
-                        <div class="timeline-description">
-                            Undergraduate studies in material forming and control engineering, providing foundation in manufacturing and materials science.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Skills Section -->
-            <div class="section">
-                <h2>Skills</h2>
-                <div class="skills-intro">
-                    <p>My core ability is to build <strong> intelligent manufacturing systems </strong> capable of <strong> real-time </strong> decision-making through the integration of algorithms, robotic execution, and physical processes. I am always thrilled to see how computational intelligence can truly impact real-world processes, rather than remaining only in simulation.</p>
-                </div>
-                <div class="skills-list">
-                    <div class="skill-category">
-                        <h3>Manufacturing Processes</h3>
-                        <p>Deep knowledge of arc welding processes, including Gas Tungsten Arc Welding (GTAW) and Gas Metal Arc Welding (GMAW)</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>AI & Deep Learning</h3>
-                        <p>Supervised learning, generative models, reinforcement learning, imitation learning</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Control Systems</h3>
-                        <p>PID, Model Predictive Control (MPC), adaptive control</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Robotics & Automation</h3>
-                        <p>Collaborative robot control, human motion capture, and human–robot interaction</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Virtual/Augmented Reality</h3>
-                        <p>Development of immersive human-interaction environments in VR and AR using the Unity platform</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Programming & Software</h3>
-                        <p>Python, MATLAB/Simulink, C#, C, C++</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Research Projects Section -->
-            <div class="section">
-                <h2>Research Projects</h2>
-                
-                <!-- Project 1: Human Predictive Control -->
-                <div class="project-item">
-                    <h3 class="project-title">Human Predictive Control of Welding Robot through Generative AI Enhanced Human-Robot Collaboration</h3>
-                    <div class="project-image-container">
-                        <img src="graphic abstract.png" alt="Human Predictive Control Project Graphic Abstract" class="project-image" style="width: 650px; height: auto;">
-                    </div>
-                    <div class="project-description">
-                        <p>To improve human control of welding process, a <strong>teleoperated Human Robot Collaboration welding system</strong> is developed, where a <strong>generative AI</strong> model can predict the future weld pool evolution, to reduce human cognitive burden. This work exemplifies a human-centric HRC paradigm that unites human expertise, robotic execution, and computational intelligence for intelligent manufacturing.</p>
-                    </div>
-                    <div class="project-publications">
-                        <h4>Related Publications:</h4>
-                        <div class="publication-item">
-                            <div class="publication-number">1.</div>
-                            <div class="publication-content">
-                                <span class="authors">Cao, Y., Ye, Q., & Zhang, Y.</span> (2025). <span class="title">Synthesizing Weld Pool Dynamics via VAE-GAN to Enhance Human Control Performance.</span> <span class="journal">Journal of Manufacturing Processes.</span>
-                            </div>
-                        </div>
-                        <div class="publication-item">
-                            <div class="publication-number">2.</div>
-                            <div class="publication-content">
-                                <span class="authors">Cao, Y., Ma, N., Ye, Q., & Zhang, Y.</span> (2025). <span class="title">Human Predictive Control of Welding Robot through Generative AI Enhanced Human-Robot Collaboration.</span> <span class="journal">IEEE Robotics and Automation Letters. (under review)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2: Robotization of DE-GMAW -->
-                <div class="project-item">
-                    <h3 class="project-title">Robotization of DE-GMAW through Human-Robot Collaboration</h3>
-                    
-                    <div class="media-grid">
-                        <!-- First Row: Images -->
-                        <div class="media-row">
-                            <div class="media-item">
-                                <img src="Virtual Reality Environment.jpg" alt="Virtual Reality Environment">
-                                <div class="media-caption">Virtual Reality Environment</div>
-                            </div>
-                            <div class="media-item">
-                                <img src="Physical System.jpg" alt="Physical System">
-                                <div class="media-caption">Physical System</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Second Row: Videos -->
-                        <div class="media-row">
-                            <div class="media-item">
-                                <video controls autoplay loop muted>
-                                    <source src="Human Demonstration Video.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                                <div class="media-caption">Human Demonstration Video</div>
-                            </div>
-                            <div class="media-item">
-                                <video controls autoplay loop muted>
-                                    <source src="Debugging of Position Control.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                                <div class="media-caption">Debugging of Position Control</div>
-                            </div>
-                            <div class="media-item">
-                                <video controls autoplay loop muted>
-                                    <source src="Automated Welding Process.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                                <div class="media-caption">Automated Welding Process</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-description">
-                        <p>Double-electrode Gas Metal Arc Welding (DE-GMAW) is a variant of GMAW that decouples heat and mass transfers, well suitable for additive manufacturing (AM). I developed a <strong>VR-based teleoperated Human Robot Collaboration system</strong> to robotize it by leveraging human adaptability. An <strong>object detection network (YOLO)</strong> was implemented and a <strong>human model</strong> was established. Ongoing studies include transferring human operational knowledge using <strong>Imitation Learning</strong>. </p>
-                    </div>
-                    
-                    <div class="project-publications">
-                        <h4>Related Publications:</h4>
-                        <div class="publication-item">
-                            <div class="publication-number">1.</div>
-                            <div class="publication-content">
-                                <span class="authors">Cao, Y., Chen, H., & Zhang, Y.</span> (2025). <span class="title">Monitoring of DE-GMAW process in human–robot collaboration.</span> <span class="journal">Welding in the World.</span>
-                            </div>
-                        </div>
-                        <div class="publication-item">
-                            <div class="publication-number">2.</div>
-                            <div class="publication-content">
-                                <span class="authors">Cao, Y., & Zhang, Y.</span> (2025). <span class="title">Control of DE-GMAW through human–robot collaboration.</span> <span class="journal">Welding in the World.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- Project 3: WAAM Anomaly Detection -->
-                <div class="project-item">
-                    <h3 class="project-title">Addressing Label Inaccuracy in WAAM Anomaly Detection via Iterative Label Refinement and Unsupervised Feature Learning</h3>
-                    <div class="project-image-container">
-                        <img src="label misclassification.jpg" alt="WAAM Anomaly Detection Label Misclassification" class="project-image" style="width: 650px; height: auto;">
-                    </div>
-                    <div class="project-description">
-                        <p>In additive manufacturing (AM), Labels are typically assigned at the segment level during post-process inspection, giving identical labels to all frames in a segment even though anomalies may occur only in part of it, leading to inevitable misclassifications. In this work, an <strong>iterative label refinement strategy</strong> is proposed, using <strong>Variational Autoencoder</strong> and <strong>Gaussian Mixture Models</strong>, to learn unbiased feature for <strong>anomaly detection</strong>.</p>
-                    </div>
-                </div>
-
-                <!-- Project 4: Adaptive Control -->
-                <div class="project-item">
-                    <h3 class="project-title">Adaptive Control of Weld Penetration in Pulsed-Gas Metal Arc Welding</h3>
-                    <div class="project-image-container">
-                        <img src="prj 1.jpg" alt="Adaptive Control of Weld Penetration Project" class="project-image" style="width: 450px; height: auto;">
-                    </div>
-                    <div class="project-description">
-                        <p>Achieve adaptive control of weld penetration in pulsed GMAW, using <strong>adaptive Model Predictive Control</strong>, <strong>nonlinear identification</strong>, and <strong>Kalman Filtering</strong>, with characteristic arc voltage signals as feedback.</p>
-                    </div>
-                    <div class="project-publications">
-                        <h4>Related Publications:</h4>
-                        <div class="publication-item">
-                            <div class="publication-number">1.</div>
-                            <div class="publication-content">
-                                <span class="authors">Cao, Y., Wang, Z., Hu, S., & Wang, T.</span> (2023). <span class="title">Adaptive predictive control of backside weld width in pulsed gas metal arc welding using electrical characteristic signals as feedback.</span> <span class="journal">IEEE Transactions on Control Systems Technology, 31(6), 2879–2886. IEEE.</span>
-                            </div>
-                        </div>
-                        <div class="publication-item">
-                            <div class="publication-number">2.</div>
-                            <div class="publication-content">
-                                <span class="authors">Cao, Y., Wang, Z., Hu, S., & Wang, W.</span> (2021). <span class="title">Modeling of weld penetration control system in GMAW-P using NARMAX methods.</span> <span class="journal">Journal of Manufacturing Processes, 65, 512–524. Elsevier.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Publications Section -->
-            <div class="section">
-                <h2>First-author Publications</h2>
-                <div class="publications-list">
-                    <div class="publication-item">
-                        <div class="publication-number">1.</div>
-                        <div class="publication-content">
-                            <span class="authors">Cao, Y., Ye, Q., & Zhang, Y.</span> (2025). <span class="title">Synthesizing Weld Pool Dynamics via VAE-GAN to Enhance Human Control Performance.</span> <span class="journal">Journal of Manufacturing Processes.</span>
-                        </div>
-                    </div>
-                    <div class="publication-item">
-                        <div class="publication-number">2.</div>
-                        <div class="publication-content">
-                            <span class="authors">Cao, Y., Chen, H., & Zhang, Y.</span> (2025). <span class="title">Monitoring of DE-GMAW process in human–robot collaboration.</span> <span class="journal">Welding in the World.</span>
-                        </div>
-                    </div>
-                    <div class="publication-item">
-                        <div class="publication-number">3.</div>
-                        <div class="publication-content">
-                            <span class="authors">Cao, Y., & Zhang, Y.</span> (2025). <span class="title">Control of DE-GMAW through human–robot collaboration.</span> <span class="journal">Welding in the World.</span>
-                        </div>
-                    </div>
-                    <div class="publication-item">
-                        <div class="publication-number">4.</div>
-                        <div class="publication-content">
-                            <span class="authors">Cao, Y., Guo, S., & Zhang, Y.</span> (2025). <span class="title">Robotizing GTAW through learning human response.</span> <span class="journal">Welding in the World.</span>
-                        </div>
-                    </div>
-                    <div class="publication-item">
-                        <div class="publication-number">5.</div>
-                        <div class="publication-content">
-                            <span class="authors">Cao, Y., Zhou, Q., Yuan, W., Ye, Q., Popa, D., & Zhang, Y.</span> (2024). <span class="title">Human–robot Collaborative Assembly and Welding: A review and analysis of the state of the art.</span> <span class="journal">Journal of Manufacturing Processes, 131, 1388–1403. Elsevier.</span>
-                        </div>
-                    </div>
-                    <div class="publication-item">
-                        <div class="publication-number">6.</div>
-                        <div class="publication-content">
-                            <span class="authors">Cao, Y., Wang, Z., Hu, S., & Wang, T.</span> (2023). <span class="title">Adaptive predictive control of backside weld width in pulsed gas metal arc welding using electrical characteristic signals as feedback.</span> <span class="journal">IEEE Transactions on Control Systems Technology, 31(6), 2879–2886. IEEE.</span>
-                        </div>
-                    </div>
-                    <div class="publication-item">
-                        <div class="publication-number">7.</div>
-                        <div class="publication-content">
-                            <span class="authors">Cao, Y., Wang, Z., Hu, S., & Wang, W.</span> (2021). <span class="title">Modeling of weld penetration control system in GMAW-P using NARMAX methods.</span> <span class="journal">Journal of Manufacturing Processes, 65, 512–524. Elsevier.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Awards Section -->
-            <div class="section">
-                <h2>Awards</h2>
-                <div class="awards-list">
-                    <div class="award-item">
-                        <div class="award-year">2025</div>
-                        <div class="award-title">International Institute of Welding (IIW) Henry Granjon Award</div>
-                        <div class="award-description">
-                            Received the prestigious Henry Granjon Award in the "Human Related Subjects" category for innovative research in <strong>human-robot collaboration</strong> integrating human intelligence for intelligent complex welding processes.
-                            <br><br>
-                            <a href="https://engr.uky.edu/news/graduate-student-receives-international-welding-award" target="_blank" style="color: #3498db; text-decoration: none; font-weight: 600;">Read the full news article →</a>
-                        </div>
-                    </div>
-                    <div class="award-item">
-                        <div class="award-year">2024</div>
-                        <div class="award-title">American Welding Society (AWS) A. F. Davis Silver Award</div>
-                        <div class="award-description">
-                            Received for contributions to welding process stability monitoring and control.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- ============ About ============ -->
+<section class="hero" id="about">
+  <div class="wrap">
+    <img class="photo" src="assets/img/profile.jpg" alt="Portrait of Yue (Troy) Cao">
+    <div>
+      <h1>Yue (Troy) Cao</h1>
+      <div class="role"><strong>Research Fellow</strong> · Department of Mechanical Engineering · University of Michigan</div>
+      <p class="bio">Yue (Troy) Cao is a Research Fellow in the Department of Mechanical Engineering at the University of Michigan. He holds a Ph.D. in Electrical Engineering from the University of Kentucky. His research focuses on the integration of control and information theory to design optimal and robust intelligent systems for applications in manufacturing, robotics, and AI inference. Currently, his work centers on robotic Wire and Arc Additive Manufacturing (WAAM) and intelligent stamping processes.</p>
+      <div class="links">
+        <a class="btn solid" href="mailto:caoyu@umich.edu"><svg viewBox="0 0 24 24"><path d="M2 5h20v14H2zM4 7v.4l8 5.3 8-5.3V7zm16 2.8-8 5.3-8-5.3V17h16z"/></svg>caoyu@umich.edu</a>
+        <a class="btn" href="https://scholar.google.com/citations?user=Ff6AFQUAAAAJ" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9zM5 13.2v3.3L12 20l7-3.5v-3.3L12 17z"/></svg>Google Scholar</a>
+        <a class="btn" href="Yue_Cao_CV.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6zm8 1.5V8h4.5zM8 12h8v1.5H8zm0 3.5h8V17H8z"/></svg>CV (PDF)</a>
+        <a class="btn" href="https://github.com/YueCaoUKY" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>GitHub</a>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ Experience + Honors ============ -->
+<section id="experience">
+  <div class="wrap two">
+    <div>
+      <h2 class="sec"><span class="bar"></span>Experience</h2>
+      <div class="legend"><span><i></i>Position</span><span><i class="e"></i>Education</span></div>
+      <div class="timeline">
+        <div class="tl"><div class="w">Apr 2026 – Present</div><div class="r">Research Fellow</div><div class="o">Department of Mechanical Engineering, University of Michigan</div></div>
+        <div class="tl edu"><div class="w">Jan 2023 – May 2026</div><div class="r">Ph.D., Electrical Engineering</div><div class="o">University of Kentucky · Advisor: Prof. Yuming Zhang</div></div>
+        <div class="tl"><div class="w">Aug 2021 – Dec 2022</div><div class="r">Control Engineer, Industry</div><div class="o">Vehicle motor control and autonomous driving control</div></div>
+        <div class="tl edu"><div class="w">Sep 2018 – Jun 2021</div><div class="r">M.Eng., Materials Processing Engineering</div><div class="o">Tianjin University</div></div>
+        <div class="tl edu"><div class="w">Sep 2014 – Jun 2018</div><div class="r">B.Eng., Materials Forming and Control Engineering</div><div class="o">Tianjin University</div></div>
+      </div>
+    </div>
+    <div>
+      <h2 class="sec"><span class="bar"></span>Honors</h2>
+      <div class="honor"><span class="y">2025</span><b>Henry Granjon Prize, International Institute of Welding</b><span class="t">Category D: Human Related Subjects, for "Control of DE-GMAW through Human–Robot Collaboration." IIW's international prize for young welding researchers, with one winner in each of four categories. <a href="https://iiwelding.org/wp-content/uploads/2025/06/IIWAWARDS2025.pdf" target="_blank" rel="noopener">IIW listing</a> · <a href="https://engr.uky.edu/news/graduate-student-receives-international-welding-award" target="_blank" rel="noopener">UK news</a></span></div>
+      <div class="honor"><span class="y">2024</span><b>A. F. Davis Silver Medal, American Welding Society</b><span class="t">Design of Welding Processes, Machines, and Equipment, for a <i>Welding Journal</i> paper on process stability control of wire-filled GTAW. <a href="https://aws-p-001-delivery.sitecorecontenthub.cloud/api/public/content/National_Awards_Package" target="_blank" rel="noopener">AWS awards</a></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Research ============ -->
+<section id="research" class="soft">
+  <div class="wrap">
+    <h2 class="sec"><span class="bar"></span>Research</h2>
+    <div class="filters" role="group" aria-label="Research areas">
+      <button aria-pressed="true" data-area="all">All</button>
+      <button aria-pressed="false" data-area="hrc">Human–Robot Collaboration</button>
+      <button aria-pressed="false" data-area="gen">Generative AI &amp; Monitoring</button>
+      <button aria-pressed="false" data-area="phys">Physics-Informed Modeling</button>
+      <button aria-pressed="false" data-area="ctrl">Control &amp; Robotics</button>
+      <button aria-pressed="false" data-area="am">Additive Manufacturing</button>
+    </div>
+
+    <div class="grid" id="grid">
+
+      <!-- 1. Molten pool model -->
+      <article class="card" tabindex="0" data-areas="phys am">
+        <div class="thumb"><video autoplay data-lazy muted loop playsinline preload="none" poster="assets/video/heat_simulation_3d.jpg"><source src="assets/video/heat_simulation_3d.webm" type="video/webm"><source src="assets/video/heat_simulation_3d.mp4" type="video/mp4"></video></div>
+        <div class="cbody">
+          <div class="meta"><span class="date">Apr 2026 – Present</span><span>U. Michigan</span></div>
+          <h4>Physics-Structured Molten Pool Modeling Across Arc Processes</h4>
+          <div class="areas"><span class="area">Physics-Informed Modeling</span><span class="area">Additive Manufacturing</span></div>
+        </div>
+        <div class="detail">
+          <div class="dhead"><h3>Physics-Structured Molten Pool Modeling Across Arc Welding and Additive Manufacturing</h3><div class="dmeta">Apr 2026 – Present · University of Michigan</div><button class="dclose" aria-label="Close">×</button></div>
+          <div class="dbody">
+            <div>
+              <div class="demo-tabs" role="tablist">
+                <button role="tab" aria-selected="true" data-win="model">Model on real processes</button>
+                <button role="tab" aria-selected="false" data-win="sim">Heat simulation</button>
+              </div>
+              <div class="proc-tabs" aria-label="Process">
+                <button aria-selected="true" data-proc="gas_tungsten_arc_welding">GTAW</button>
+                <button aria-selected="false" data-proc="gas_metal_arc_welding">GMAW</button>
+                <button aria-selected="false" data-proc="wire_arc_additive_manufacturing">WAAM</button>
+              </div>
+              <div class="demo-frame"><video class="demo-video" muted loop playsinline preload="none" poster="assets/video/gas_tungsten_arc_welding.jpg"><source src="assets/video/gas_tungsten_arc_welding.webm" type="video/webm"><source src="assets/video/gas_tungsten_arc_welding.mp4" type="video/mp4"></video></div>
+              <p class="demo-caption"></p>
+            </div>
+            <div class="dtext">
+              <p>The molten pool is the central phenomenon of arc welding and arc-based additive manufacturing, and its evolution decides the quality of the deposit. Yet pool models are built one process at a time and must be redesigned whenever the joint, feedstock, sensors, or welding method change, although the same conservation laws govern every arc process.</p>
+              <p>This project builds a single physics-structured, dissipative neural state-space framework for these processes. A pretrained vision foundation model, regularized by a neural ODE prior, first extracts a compact pool state from the video of one experiment without labels. That state then enters a lumped energy balance that closes into a two-state model: a fast pool state that relaxes toward an input-dependent equilibrium, and a slow state for the heat accumulated in the workpiece, which is never measured and is learned only through long-horizon prediction.</p>
+              <p>Tested on GTAW, GMAW, and WAAM, the same two-state structure appears in every case, with only the sensing front end adapted to each process.</p>
+              <h5>Manuscript</h5>
+              <ol><li><span class="me">Cao, Y.</span>, et al. Beyond process-specific molten pool modeling: A physics-structured, dissipative neural state-space framework. <span class="badge status">In preparation</span></li></ol>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. Robotic WAAM (in progress) -->
+      <article class="card" tabindex="0" data-areas="am ctrl">
+        <div class="thumb"><video autoplay data-lazy muted loop playsinline preload="none" poster="assets/video/waam_sim.jpg"><source src="assets/video/waam_sim.mp4" type="video/mp4"></video></div>
+        <div class="cbody">
+          <div class="meta"><span class="date">Apr 2026 – Present</span><span>U. Michigan</span></div>
+          <h4>Autonomous Robotic WAAM <span class="badge status">In progress</span></h4>
+          <div class="areas"><span class="area">Additive Manufacturing</span><span class="area">Control &amp; Robotics</span></div>
+        </div>
+        <div class="detail">
+          <div class="dhead"><h3>Autonomous Robotic Wire Arc Additive Manufacturing: Sensing, Digital Twin, and Closed-Loop Control</h3><div class="dmeta">Apr 2026 – Present · University of Michigan · In progress</div><button class="dclose" aria-label="Close">×</button></div>
+          <div class="dbody single">
+            <figure class="sim">
+              <div class="sim-frame"><iframe data-src="assets/sim/waam_simulation.html" title="Interactive simulation of robotic WAAM" loading="lazy"></iframe><button class="sim-cover" type="button">Click to interact · drag to orbit, scroll to zoom</button></div>
+              <figcaption>Interactive simulation: multi-axis deposition of a bladed hub with a KUKA robot and positioner. The panel tracks layer progress, positioner rotation rate, and arm-pose quality. Drag to orbit, scroll to zoom. <a href="assets/sim/waam_simulation.html" target="_blank" rel="noopener">Open full screen</a></figcaption>
+            </figure>
+            <div class="dtext">
+              <p>This project builds a robotic WAAM system in which process and part states are sensed, predicted, corrected, and executed in a closed loop. The work spans two scales: single beads and walls, where local links between process state, action, and geometry are learned, and complex parts such as turbine components, where those local models guide decisions on global geometry, heat, and robot motion.</p>
+              <p>Planned platform: an HDR camera for arc, wire, and melt-pool morphology; a thermal camera and pyrometer for the thermal state; a 3D camera for layer geometry; and a KUKA robot with a positioner for deposition.</p>
+              <h5>Proposed directions</h5>
+              <ol>
+                <li><b>Multisource monitoring and state estimation.</b> Fuse camera, thermal, and 3D data into one estimate of the melt pool, bead, and part, with uncertainty.</li>
+                <li><b>Sensor-corrected digital twin.</b> Physics models and fast learned surrogates of thermal history, bead growth, and distortion, updated continuously by measurements.</li>
+                <li><b>Hierarchical process and geometry control.</b> An inner loop regulates the melt pool and bead along a path; an outer loop corrects accumulated shape error after each layer.</li>
+                <li><b>Process-aware robotic deposition planning.</b> Robot and positioner motion that preserves process conditions while respecting reachability, singularity, and collision limits.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. PINN -->
+      <article class="card" tabindex="0" data-areas="phys am">
+        <div class="thumb"><video autoplay data-lazy muted loop playsinline preload="none" poster="assets/video/pinn_h0.jpg"><source src="assets/video/pinn_h0.mp4" type="video/mp4"></video></div>
+        <div class="cbody">
+          <div class="meta"><span class="date">2025 – 2026</span><span>U. Kentucky</span></div>
+          <h4>Physics-Informed Reconstruction of Molten Pool Flow</h4>
+          <div class="areas"><span class="area">Physics-Informed Modeling</span><span class="area">Additive Manufacturing</span></div>
+        </div>
+        <div class="detail">
+          <div class="dhead"><h3>Physics-Informed Reconstruction of Molten Pool Flow from High-Speed Video</h3><div class="dmeta">2025 – 2026 · University of Kentucky</div><button class="dclose" aria-label="Close">×</button></div>
+          <div class="dbody">
+            <div class="gallery">
+              <figure><video controls muted loop playsinline preload="none" poster="assets/video/pinn_h0.jpg"><source src="assets/video/pinn_h0.mp4" type="video/mp4"></video><figcaption>Wire offset h = 0 mm (1500 fps, slowed 50×)</figcaption></figure>
+              <figure><video controls muted loop playsinline preload="none" poster="assets/video/pinn_h4.jpg"><source src="assets/video/pinn_h4.mp4" type="video/mp4"></video><figcaption>Wire offset h = 4 mm</figcaption></figure>
+              <figure class="wide"><img src="assets/img/pinn_results.jpg" alt="Reconstructed flow field, arc force, and pressure" loading="lazy"><figcaption>Reconstructed flow field, arc force distribution, and pressure field</figcaption></figure>
+              <figure><img src="assets/img/pinn_flow.jpg" alt="Optical flow on the pool surface" loading="lazy"><figcaption>Surface velocity from optical flow</figcaption></figure>
+              <figure><img src="assets/img/pinn_system.jpg" alt="Experimental system" loading="lazy"><figcaption>GTAW-based WAAM system with high-speed imaging</figcaption></figure>
+            </div>
+            <div class="dtext">
+              <p>Flow inside the molten pool governs heat transfer and solidification, but it is hidden beneath a bright, moving surface. From high-speed video of a GTAW-based additive process, optical flow gives sparse surface velocities, and a physics-informed neural network that embeds the Navier–Stokes equations reconstructs the complete velocity and pressure fields while identifying the arc force and effective viscosity.</p>
+              <p>Three wire positions produce two distinct convection patterns, and a time-conditioned network captures the flow driven by droplet impact. Across the cases, the identified arc force is consistent and, with the pressure field, explains the observed flow patterns; low Reynolds numbers confirm laminar flow.</p>
+              <h5>Publication and code</h5>
+              <ol><li><span class="me">Cao, Y.</span>, Su, Q., Hoang Tien, D., &amp; Nguyen, V. A. Reconstruction of molten pool flow fields from high-speed video using physics-informed neural networks. <i>Journal of Intelligent Manufacturing</i>. <span class="badge status">Under review</span> <a href="https://github.com/YueCaoUKY/Molten-Pool-Flow-Detection-via-PINN" target="_blank" rel="noopener">Code</a></li></ol>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. Humanoid -->
+      <article class="card" tabindex="0" data-areas="ctrl">
+        <div class="thumb"><video autoplay data-lazy muted loop playsinline preload="none" poster="assets/video/humanoid_sim.jpg"><source src="assets/video/humanoid_sim.mp4" type="video/mp4"></video></div>
+        <div class="cbody">
+          <div class="meta"><span class="date">2025 – 2026</span><span>U. Kentucky</span></div>
+          <h4>Humanoid Robot Welding with Multirate Whole-Body Control</h4>
+          <div class="areas"><span class="area">Control &amp; Robotics</span></div>
+        </div>
+        <div class="detail">
+          <div class="dhead"><h3>Humanoid Robot Welding with Multirate Whole-Body Control</h3><div class="dmeta">2025 – 2026 · University of Kentucky</div><button class="dclose" aria-label="Close">×</button></div>
+          <div class="dbody">
+            <div class="gallery">
+              <figure class="wide"><video controls muted loop playsinline preload="none" poster="assets/video/humanoid_sim.jpg"><source src="assets/video/humanoid_sim.mp4" type="video/mp4"></video><figcaption>Simulated humanoid welding pass (2× speed)</figcaption></figure>
+              <figure class="wide"><img src="assets/img/humanoid_control.jpg" alt="Multirate control framework" loading="lazy"><figcaption>Whole-body MPC (25 Hz) with a process-feedback inner loop (200 Hz)</figcaption></figure>
+            </div>
+            <div class="dtext">
+              <p>Humanoid robots can walk to large, irregular workpieces in shipbuilding, field repair, and infrastructure, but a compliant whole-body kinematic chain makes sub-millimeter torch placement difficult.</p>
+              <p>In this framework, whole-body model predictive control plans the 19-joint configuration under balance constraints, and a faster inner loop corrects lateral and normal torch errors measured by seam-tracking and arc-voltage sensing. The two loops exchange information in both directions: the planner sends action limits based on the balance margin, and the inner loop returns offset estimates that shift the planned trajectory.</p>
+              <p>In a simulated weld pass, the closed loop reduced the critical lateral and normal torch errors from millimeters to about a tenth of a millimeter, a precision that whole-body control alone did not reach.</p>
+              <h5>Source</h5>
+              <ol><li><span class="me">Cao, Y.</span> (2026). Robotizing complex welding processes through imitation learning and generative models from human demonstration. Ph.D. dissertation, University of Kentucky, Ch. 6.</li></ol>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. Latent dynamics + iLQR -->
+      <article class="card" tabindex="0" data-areas="ctrl phys">
+        <div class="thumb contain"><img src="assets/img/ilqr_framework.jpg" alt="Imitation-learning-augmented iLQR framework"></div>
+        <div class="cbody">
+          <div class="meta"><span class="date">2025 – 2026</span><span>U. Kentucky</span></div>
+          <h4>Latent Dynamics and Imitation-Learning-Augmented Optimal Control</h4>
+          <div class="areas"><span class="area">Control &amp; Robotics</span><span class="area">Physics-Informed Modeling</span></div>
+        </div>
+        <div class="detail">
+          <div class="dhead"><h3>Latent Dynamics Modeling and Imitation-Learning-Augmented Optimal Control</h3><div class="dmeta">2025 – 2026 · University of Kentucky</div><button class="dclose" aria-label="Close">×</button></div>
+          <div class="dbody">
+            <div class="gallery">
+              <figure class="wide"><img src="assets/img/ilqr_framework.jpg" alt="Combined control framework" loading="lazy"><figcaption>Behavior cloning, iLQR, latent dynamics, and Bayesian filtering in one loop</figcaption></figure>
+              <figure class="wide"><img src="assets/img/ilqr_tracking.jpg" alt="Reference tracking" loading="lazy"><figcaption>Reference tracking: state and control trajectories</figcaption></figure>
+            </div>
+            <div class="dtext">
+              <p>Autonomous control needs a model of how the process evolves. Neural ordinary differential equations learn continuous-time weld pool dynamics in a learned latent space. Of three architectures compared, a dissipative one with a Lyapunov constraint stays the most robust when the model adapts online, because the constraint keeps adapted models physically meaningful.</p>
+              <p>For control, a policy cloned from welder demonstrations serves as a prior inside an iterative linear quadratic regulator, which then optimizes only a correction around it. In simulation with model mismatch and disturbances, the combined controller converged in fewer iterations and rejected disturbances faster and with lower error than behavior cloning or iLQR alone.</p>
+              <h5>Source</h5>
+              <ol><li><span class="me">Cao, Y.</span> (2026). Robotizing complex welding processes through imitation learning and generative models from human demonstration. Ph.D. dissertation, University of Kentucky, Ch. 5.</li></ol>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6. Human predictive control -->
+      <article class="card" tabindex="0" data-areas="hrc gen">
+        <div class="thumb"><video autoplay data-lazy muted loop playsinline preload="none" poster="assets/video/hpc_vr.jpg"><source src="assets/video/hpc_vr.mp4" type="video/mp4"></video></div>
+        <div class="cbody">
+          <div class="meta"><span class="date">2024 – 2026</span><span>U. Kentucky</span></div>
+          <h4>Human Predictive Control with Generative AI</h4>
+          <div class="areas"><span class="area">Human–Robot Collaboration</span><span class="area">Generative AI &amp; Monitoring</span></div>
+        </div>
+        <div class="detail">
+          <div class="dhead"><h3>Human Predictive Control through Generative-AI-Enhanced Human–Robot Collaboration</h3><div class="dmeta">2024 – 2026 · University of Kentucky</div><button class="dclose" aria-label="Close">×</button></div>
+          <div class="dbody">
+            <div class="gallery">
+              <figure class="wide"><video controls muted loop playsinline preload="none" poster="assets/video/hpc_vr.jpg"><source src="assets/video/hpc_vr.mp4" type="video/mp4"></video><figcaption>VR teleoperation with generative-AI-predicted weld pool views</figcaption></figure>
+              <figure class="wide"><img src="assets/img/hpc_abstract.jpg" alt="Human, robot, and generative model in one control loop" loading="lazy"><figcaption>Human, robot, and generative model in one control loop</figcaption></figure>
+            </div>
+            <div class="dtext">
+              <p>Skilled welders anticipate how the weld pool will change and act early, but remote operators who see only the live view tend to react late, because the weld pool responds slowly to their commands.</p>
+              <p>In a virtual-reality teleoperation system for gas tungsten arc welding, operators control the torch through motion capture while a generative model shows the weld pool predicted five seconds ahead, next to the live view and a reference pool. In experiments with three operators, the predicted view roughly halved the time needed to correct a speed disturbance and produced a more uniform backside bead, shifting control from reactive correction to proactive adjustment.</p>
+              <h5>Publications and code</h5>
+              <ol>
+                <li><span class="me">Cao, Y.</span>, Ma, N., Ye, Q., &amp; Zhang, Y. Human predictive control of welding process through generative AI enhanced human–robot collaboration. <i>Journal of Manufacturing Processes</i>. <span class="badge status">Accepted</span> <a href="https://github.com/YueCaoUKY/HL-VAE-Welding" target="_blank" rel="noopener">Code</a></li>
+                <li><span class="me">Cao, Y.</span>, Zhou, Q., Yuan, W., Ye, Q., Popa, D., &amp; Zhang, Y. (2024). Human–robot collaborative assembly and welding: A review and analysis of the state of the art. <i>Journal of Manufacturing Processes</i>, 131, 1388–1403.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7. Generative modeling and monitoring -->
+      <article class="card" tabindex="0" data-areas="gen">
+        <div class="thumb contain"><video autoplay data-lazy muted loop playsinline preload="none" poster="assets/video/hlvae_pred.jpg"><source src="assets/video/hlvae_pred.mp4" type="video/mp4"></video></div>
+        <div class="cbody">
+          <div class="meta"><span class="date">2024 – 2026</span><span>U. Kentucky</span></div>
+          <h4>Generative Process Modeling and Bayesian Monitoring</h4>
+          <div class="areas"><span class="area">Generative AI &amp; Monitoring</span></div>
+        </div>
+        <div class="detail">
+          <div class="dhead"><h3>Generative Process Modeling and Bayesian Monitoring of Arc Welding</h3><div class="dmeta">2024 – 2026 · University of Kentucky</div><button class="dclose" aria-label="Close">×</button></div>
+          <div class="dbody">
+            <div class="gallery">
+              <figure><video controls muted loop playsinline preload="none" poster="assets/video/hlvae_pred.jpg"><source src="assets/video/hlvae_pred.mp4" type="video/mp4"></video><figcaption>Long-term prediction of weld pool images</figcaption></figure>
+              <figure><img src="assets/img/hlvae_recon.jpg" alt="Reconstruction and latent grounding" loading="lazy"><figcaption>Reconstruction and physically grounded latent states</figcaption></figure>
+              <figure class="wide"><img src="assets/img/hlvae_method.jpg" alt="Hybrid-latent VAE" loading="lazy"><figcaption>Hybrid latent: a structured Gaussian path and a codebook residual path</figcaption></figure>
+            </div>
+            <div class="dtext">
+              <p>Weld pool images carry rich process information but are expensive to label. These generative models learn a compact pool state without heavy annotation and predict how it evolves.</p>
+              <p>A VAE-GAN synthesizes realistic future pool images to support human operators; a hybrid-latent variational autoencoder learns structured latents that track the physical pool dimensions; and a dynamic variational autoencoder combined with a particle filter estimates hidden weld states online and transfers from GTAW to GMAW. The monitoring framework was developed with Prof. Hai Lin (University of Notre Dame).</p>
+              <h5>Publications and code</h5>
+              <ol>
+                <li><span class="me">Cao, Y.</span>, Lin, H., &amp; Zhang, Y. (2026). Robust monitoring of arc welding processes: A generalizable framework with DVAE and particle filter. <i>Journal of Manufacturing Processes</i>, 160, 15–27.</li>
+                <li><span class="me">Cao, Y.</span>, Ye, Q., &amp; Zhang, Y. (2025). Synthesizing weld pool dynamics via VAE-GAN to enhance human control performance. <i>Journal of Manufacturing Processes</i>, 155, 98–107.</li>
+                <li><span class="me">Cao, Y.</span>, Ye, Q., &amp; Zhang, Y. (2026). Application of generative adversarial networks (GANs) in intelligent welding manufacturing. <i>Welding in the World</i>, 70(4), 1283–1298.</li>
+                <li>Code: <a href="https://github.com/YueCaoUKY/HL-VAE-Welding" target="_blank" rel="noopener">HL-VAE-Welding</a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8. WAAM anomaly detection -->
+      <article class="card" tabindex="0" data-areas="gen am">
+        <div class="thumb contain"><img src="assets/img/waam_label.jpg" alt="Label misclassification in WAAM monitoring"></div>
+        <div class="cbody">
+          <div class="meta"><span class="date">2025</span><span>U. Kentucky</span></div>
+          <h4>WAAM Anomaly Detection from Noisy Industrial Labels</h4>
+          <div class="areas"><span class="area">Generative AI &amp; Monitoring</span><span class="area">Additive Manufacturing</span></div>
+        </div>
+        <div class="detail">
+          <div class="dhead"><h3>Reliable WAAM Anomaly Detection from Noisy Industrial Labels</h3><div class="dmeta">2025 · University of Kentucky</div><button class="dclose" aria-label="Close">×</button></div>
+          <div class="dbody">
+            <div class="gallery"><figure class="wide"><img src="assets/img/waam_label.jpg" alt="Segment-level labels and frame-level anomalies" loading="lazy"><figcaption>Segment-level labels mark many normal frames as abnormal</figcaption></figure></div>
+            <div class="dtext">
+              <p>In industrial additive manufacturing, quality labels are assigned to whole segments after inspection, while transient anomalies occupy only part of each segment, so many normal frames are labeled abnormal.</p>
+              <p>An iterative label refinement method, built on unsupervised feature learning with a variational autoencoder and Gaussian mixture model, corrects these labels during training and, on real industrial WAAM data, learns a reliable detector of spatter, gas disturbance, and arc instability. This work was carried out with Dr. Giulio Mattera (University of Naples Federico II) and Prof. Peng Wang (Case Western Reserve University).</p>
+              <h5>Publications</h5>
+              <ol>
+                <li><span class="me">Cao, Y.</span>, Mattera, G., Wang, P., &amp; Zhang, Y. (2026). Enhancing in-situ anomaly detection during wire arc additive manufacturing process through iterative automated label refinement. <i>Journal of Manufacturing Processes</i>, 167, 119–130.</li>
+                <li>Mattera, G., <span class="me">Cao, Y.</span>, Zhang, Y., &amp; Nele, L. (2026). Vision-based online quality tracking in wire arc additive manufacturing via hybrid unsupervised deep learning–statistical process monitoring. <i>Welding in the World</i>, 70(4), 1261–1281.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 9. GTAW human response -->
+      <article class="card" tabindex="0" data-areas="hrc ctrl">
+        <div class="thumb contain"><img src="assets/img/gtaw_system.jpg" alt="VR-based teleoperated GTAW system"></div>
+        <div class="cbody">
+          <div class="meta"><span class="date">2024 – 2025</span><span>U. Kentucky</span></div>
+          <h4>Robotizing GTAW by Learning Human Response</h4>
+          <div class="areas"><span class="area">Human–Robot Collaboration</span><span class="area">Control &amp; Robotics</span></div>
+        </div>
+        <div class="detail">
+          <div class="dhead"><h3>Robotizing GTAW by Learning Human Response</h3><div class="dmeta">2024 – 2025 · University of Kentucky</div><button class="dclose" aria-label="Close">×</button></div>
+          <div class="dbody">
+            <div class="gallery">
+              <figure><img src="assets/img/gtaw_system.jpg" alt="VR-based teleoperated welding system" loading="lazy"><figcaption>VR-based teleoperated welding system</figcaption></figure>
+              <figure><img src="assets/img/gtaw_model.jpg" alt="Human response model" loading="lazy"><figcaption>Human response model with feature selection</figcaption></figure>
+              <figure><img src="assets/img/gtaw_result.jpg" alt="Closed-loop control result" loading="lazy"><figcaption>Closed-loop control with the learned model</figcaption></figure>
+              <figure><img src="assets/img/gtaw_weld.jpg" alt="Weld views" loading="lazy"><figcaption>Topside and backside weld views</figcaption></figure>
+            </div>
+            <div class="dtext">
+              <p>In gas tungsten arc welding, skilled operators adjust travel speed from the look of the weld pool to reach the desired penetration. Copying the mapping from images to actions, however, learns only the surface of that skill.</p>
+              <p>From demonstrations collected in a VR teleoperation system, Shapley-based attribution identifies the visual features that drive an operator's speed adjustments, and an LSTM model learns the operator's response from those features. Deployed for autonomous welding, the learned model tracked the target backside weld width in closed loop and recovered after an added disturbance.</p>
+              <h5>Publication</h5>
+              <ol><li><span class="me">Cao, Y.</span>, Guo, S., &amp; Zhang, Y. (2026). Robotizing GTAW through learning human response. <i>Welding in the World</i>, 70, 1361–1371.</li></ol>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10. DE-GMAW HRC -->
+      <article class="card" tabindex="0" data-areas="hrc ctrl am">
+        <div class="thumb"><video autoplay data-lazy muted loop playsinline preload="none" poster="assets/video/degmaw_demo.jpg"><source src="assets/video/degmaw_demo.mp4" type="video/mp4"></video></div>
+        <div class="cbody">
+          <div class="meta"><span class="date">2023 – 2025</span><span>U. Kentucky</span></div>
+          <h4>Robotizing DE-GMAW through Human–Robot Collaboration <span class="badge award">IIW Prize</span></h4>
+          <div class="areas"><span class="area">Human–Robot Collaboration</span><span class="area">Control &amp; Robotics</span></div>
+        </div>
+        <div class="detail">
+          <div class="dhead"><h3>Robotizing Double-Electrode GMAW through Human–Robot Collaboration</h3><div class="dmeta">2023 – 2025 · University of Kentucky</div><button class="dclose" aria-label="Close">×</button></div>
+          <div class="dbody">
+            <div class="gallery">
+              <figure><video controls muted loop playsinline preload="none" poster="assets/video/degmaw_demo.jpg"><source src="assets/video/degmaw_demo.mp4" type="video/mp4"></video><figcaption>Human demonstration</figcaption></figure>
+              <figure><video controls muted loop playsinline preload="none" poster="assets/video/degmaw_auto.jpg"><source src="assets/video/degmaw_auto.mp4" type="video/mp4"></video><figcaption>Automated welding process</figcaption></figure>
+              <figure><img src="assets/img/degmaw_vr.jpg" alt="Virtual reality environment" loading="lazy"><figcaption>Virtual reality environment</figcaption></figure>
+              <figure><img src="assets/img/degmaw_physical.jpg" alt="Physical dual-robot system" loading="lazy"><figcaption>Physical dual-robot system</figcaption></figure>
+              <figure class="wide"><video controls muted loop playsinline preload="none" poster="assets/video/degmaw_position.jpg"><source src="assets/video/degmaw_position.mp4" type="video/mp4"></video><figcaption>Debugging of position control</figcaption></figure>
+            </div>
+            <div class="dtext">
+              <p>Double-electrode GMAW adds a bypass electrode that separates heat input from metal deposition, which suits low-distortion additive manufacturing, but the bypass electrode must be positioned precisely in real time.</p>
+              <p>A VR-based dual-robot collaboration system lets a welder remotely manipulate the heavy torch with millimeter precision, producing stable welds with reduced heat input. Object detection and arc-voltage modeling explain how electrode position shapes the process, and the welders' demonstrations are used to teach robots to weld autonomously. This work received the 2025 IIW Henry Granjon Prize.</p>
+              <h5>Publications</h5>
+              <ol>
+                <li><span class="me">Cao, Y.</span>, &amp; Zhang, Y. (2025). Control of DE-GMAW through human–robot collaboration. <i>Welding in the World</i>, 69(5), 1459–1468. <span class="badge award">2025 IIW Henry Granjon Prize</span></li>
+                <li><span class="me">Cao, Y.</span>, Chen, H., &amp; Zhang, Y. (2025). Monitoring of DE-GMAW process in human–robot collaboration. <i>Welding in the World</i>, 69(5), 1427–1435.</li>
+                <li>Yu, R., <span class="me">Cao, Y.</span>, Martin, J., Chiang, O., &amp; Zhang, Y. (2024). Robotizing double-electrode GMAW process through learning from human welders. <i>Journal of Manufacturing Processes</i>, 109, 140–150.</li>
+                <li>Yu, R., <span class="me">Cao, Y.</span>, Martin, J., Chiang, O., &amp; Zhang, Y. (2024). Deep-learning based supervisory monitoring of robotized DE-GMAW process through learning from human welders. <i>Welding in the World</i>, 68(4), 781–791.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 11. GMAW-P adaptive control -->
+      <article class="card" tabindex="0" data-areas="ctrl">
+        <div class="thumb contain"><img src="assets/img/gmawp_control.jpg" alt="Adaptive control of weld penetration in pulsed GMAW"></div>
+        <div class="cbody">
+          <div class="meta"><span class="date">2018 – 2021</span><span>Tianjin Univ.</span></div>
+          <h4>Adaptive Control of Weld Penetration in Pulsed GMAW</h4>
+          <div class="areas"><span class="area">Control &amp; Robotics</span></div>
+        </div>
+        <div class="detail">
+          <div class="dhead"><h3>Adaptive Control of Weld Penetration in Pulsed GMAW</h3><div class="dmeta">2018 – 2021 · Tianjin University</div><button class="dclose" aria-label="Close">×</button></div>
+          <div class="dbody">
+            <div class="gallery"><figure class="wide"><img src="assets/img/gmawp_control.jpg" alt="Penetration sensing and control" loading="lazy"><figcaption>Penetration sensing and adaptive control from arc electrical signals</figcaption></figure></div>
+            <div class="dtext">
+              <p>Weld penetration determines joint strength but forms out of sight beneath the pool, and camera-based sensing is often impractical on the factory floor.</p>
+              <p>Using only the welding machine's electrical signals, this work identified arc-voltage features that reveal penetration, fused them with a Kalman filter, and built a reduced-order nonlinear model of the process. An adaptive model predictive controller built on this model kept the backside weld width on target under sudden changes in heat dissipation, where open-loop welding lost consistency.</p>
+              <h5>Publications</h5>
+              <ol>
+                <li><span class="me">Cao, Y.</span>, Wang, Z., Hu, S., &amp; Wang, T. (2023). Adaptive predictive control of backside weld width in pulsed gas metal arc welding using electrical characteristic signals as feedback. <i>IEEE Transactions on Control Systems Technology</i>, 31(6), 2879–2886.</li>
+                <li><span class="me">Cao, Y.</span>, Wang, Z., Hu, S., &amp; Wang, W. (2021). Modeling of weld penetration control system in GMAW-P using NARMAX methods. <i>Journal of Manufacturing Processes</i>, 65, 512–524.</li>
+                <li>Zou, S., Wang, Z., <span class="me">Cao, Y.</span>, &amp; Hu, S. (2023). Effects of filler wire intervention on the gas tungsten arc: Part III—Process stability control of wire-filled GTAW. <i>Welding Journal</i>, 102(3), 53s–68s. <span class="badge award">2024 AWS A. F. Davis Silver Medal</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ Publications ============ -->
+<section id="publications">
+  <div class="wrap pubs">
+    <h2 class="sec"><span class="bar"></span>Publications</h2>
+    <p style="font-size:14.5px;color:var(--muted);margin:-8px 0 16px">24 published or accepted journal articles (11 as first author) and 1 under review. See also <a href="https://scholar.google.com/citations?user=Ff6AFQUAAAAJ" target="_blank" rel="noopener">Google Scholar</a>.</p>
+
+    <h3 class="sub">First author</h3>
+    <ol>
+      <li data-n="J1"><span class="me">Cao, Y.</span>, Ma, N., Ye, Q., &amp; Zhang, Y. Human predictive control of welding process through generative AI enhanced human–robot collaboration. <span class="v">Journal of Manufacturing Processes.</span> <span class="badge status">Accepted</span><a class="code" href="https://github.com/YueCaoUKY/HL-VAE-Welding" target="_blank" rel="noopener">Code</a></li>
+      <li data-n="J2"><span class="me">Cao, Y.</span>, Su, Q., Hoang Tien, D., &amp; Nguyen, V. A. Reconstruction of molten pool flow fields from high-speed video using physics-informed neural networks. <span class="v">Journal of Intelligent Manufacturing.</span> <span class="badge status">Under review</span><a class="code" href="https://github.com/YueCaoUKY/Molten-Pool-Flow-Detection-via-PINN" target="_blank" rel="noopener">Code</a></li>
+      <li data-n="J3"><span class="me">Cao, Y.</span>, Wang, Z., Hu, S., &amp; Wang, T. (2023). Adaptive predictive control of backside weld width in pulsed gas metal arc welding using electrical characteristic signals as feedback. <span class="v">IEEE Transactions on Control Systems Technology, 31(6), 2879–2886.</span></li>
+      <li data-n="J4"><span class="me">Cao, Y.</span>, Lin, H., &amp; Zhang, Y. (2026). Robust monitoring of arc welding processes: A generalizable framework with DVAE and particle filter. <span class="v">Journal of Manufacturing Processes, 160, 15–27.</span></li>
+      <li data-n="J5"><span class="me">Cao, Y.</span>, Mattera, G., Wang, P., &amp; Zhang, Y. (2026). Enhancing in-situ anomaly detection during wire arc additive manufacturing process through iterative automated label refinement. <span class="v">Journal of Manufacturing Processes, 167, 119–130.</span></li>
+      <li data-n="J6"><span class="me">Cao, Y.</span>, Ye, Q., &amp; Zhang, Y. (2025). Synthesizing weld pool dynamics via VAE-GAN to enhance human control performance. <span class="v">Journal of Manufacturing Processes, 155, 98–107.</span></li>
+      <li data-n="J7"><span class="me">Cao, Y.</span>, &amp; Zhang, Y. (2025). Control of DE-GMAW through human–robot collaboration. <span class="v">Welding in the World, 69(5), 1459–1468.</span> <span class="badge award">2025 IIW Henry Granjon Prize</span></li>
+      <li data-n="J8"><span class="me">Cao, Y.</span>, Zhou, Q., Yuan, W., Ye, Q., Popa, D., &amp; Zhang, Y. (2024). Human–robot collaborative assembly and welding: A review and analysis of the state of the art. <span class="v">Journal of Manufacturing Processes, 131, 1388–1403.</span></li>
+      <li data-n="J9"><span class="me">Cao, Y.</span>, Guo, S., &amp; Zhang, Y. (2026). Robotizing GTAW through learning human response. <span class="v">Welding in the World, 70, 1361–1371.</span></li>
+      <li data-n="J10"><span class="me">Cao, Y.</span>, Chen, H., &amp; Zhang, Y. (2025). Monitoring of DE-GMAW process in human–robot collaboration. <span class="v">Welding in the World, 69(5), 1427–1435.</span></li>
+      <li data-n="J11"><span class="me">Cao, Y.</span>, Ye, Q., &amp; Zhang, Y. (2026). Application of generative adversarial networks (GANs) in intelligent welding manufacturing. <span class="v">Welding in the World, 70(4), 1283–1298.</span></li>
+      <li data-n="J12"><span class="me">Cao, Y.</span>, Wang, Z., Hu, S., &amp; Wang, W. (2021). Modeling of weld penetration control system in GMAW-P using NARMAX methods. <span class="v">Journal of Manufacturing Processes, 65, 512–524.</span></li>
+    </ol>
+
+    <h3 class="sub" style="margin-top:26px">Coauthor</h3>
+    <ol>
+      <li data-n="J13">Le, B. T. G., Le, Q. H., <span class="me">Cao, Y.</span>, DebRoy, T., Oliveira, J., Hoang Tien, D., et al. (2026). Wire arc additive manufacturing: Fundamental, challenges, solutions, and emerging frontiers. <span class="v">Journal of Manufacturing Processes, 172, 962–1033.</span></li>
+      <li data-n="J14">Mattera, G., <span class="me">Cao, Y.</span>, Zhang, Y., &amp; Nele, L. (2026). Vision-based online quality tracking in wire arc additive manufacturing via hybrid unsupervised deep learning–statistical process monitoring. <span class="v">Welding in the World, 70(4), 1261–1281.</span></li>
+      <li data-n="J15">Li, T., <span class="me">Cao, Y.</span>, Ye, Q., &amp; Zhang, Y. (2025). Generative adversarial networks (GAN) model for dynamically adjusted weld pool image toward human-based model predictive control (MPC). <span class="v">Journal of Manufacturing Processes, 141, 210–221.</span></li>
+      <li data-n="J16">Li, T., <span class="me">Cao, Y.</span>, &amp; Zhang, Y. (2024). Analysis of weld pool region constituents in GMAW for dynamic reconstruction through characteristic enhancement and LSTM U-Net networks. <span class="v">Journal of Manufacturing Processes, 127, 573–588.</span></li>
+      <li data-n="J17">Mucllari, E., <span class="me">Cao, Y.</span>, Ye, Q., &amp; Zhang, Y. (2024). Modeling imaged welding process dynamic behaviors using generative adversarial network (GAN) for a new foundation to monitor weld penetration using deep learning. <span class="v">Journal of Manufacturing Processes, 124, 187–195.</span></li>
+      <li data-n="J18">Yu, R., <span class="me">Cao, Y.</span>, Martin, J., Chiang, O., &amp; Zhang, Y. (2024). Deep-learning based supervisory monitoring of robotized DE-GMAW process through learning from human welders. <span class="v">Welding in the World, 68(4), 781–791.</span></li>
+      <li data-n="J19">Yu, R., <span class="me">Cao, Y.</span>, Martin, J., Chiang, O., &amp; Zhang, Y. (2024). Robotizing double-electrode GMAW process through learning from human welders. <span class="v">Journal of Manufacturing Processes, 109, 140–150.</span></li>
+      <li data-n="J20">Yu, R., <span class="me">Cao, Y.</span>, Chen, H., Ye, Q., &amp; Zhang, Y. (2023). Deep learning based real-time and in-situ monitoring of weld penetration: Where we are and what are needed revolutionary solutions? <span class="v">Journal of Manufacturing Processes, 93, 15–46.</span></li>
+      <li data-n="J21">Mucllari, E., Yu, R., <span class="me">Cao, Y.</span>, Ye, Q., &amp; Zhang, Y. (2023). Do we need a new foundation to use deep learning to monitor weld penetration? <span class="v">IEEE Robotics and Automation Letters, 8(6), 3669–3676.</span></li>
+      <li data-n="J22">Zou, S., Wang, Z., <span class="me">Cao, Y.</span>, &amp; Hu, S. (2023). Effects of filler wire intervention on the gas tungsten arc: Part III—Process stability control of wire-filled GTAW. <span class="v">Welding Journal, 102(3), 53s–68s.</span> <span class="badge award">2024 AWS A. F. Davis Silver Medal</span></li>
+      <li data-n="J23">Wang, T., Wang, Z., <span class="me">Cao, Y.</span>, Wang, Y., &amp; Hu, S. (2021). A multi-BRIEF-descriptor stereo matching algorithm for binocular visual sensing of fillet welds with indistinct features. <span class="v">Journal of Manufacturing Processes, 66, 636–650.</span></li>
+      <li data-n="J24">Zou, S., Wang, Z., Hu, S., Wang, W., &amp; <span class="me">Cao, Y.</span> (2020). Control of weld penetration depth using relative fluctuation coefficient as feedback. <span class="v">Journal of Intelligent Manufacturing, 31(5), 1203–1213.</span></li>
+      <li data-n="J25">Wang, W., Wang, Z., Hu, S., Bai, P., Lu, T., &amp; <span class="me">Cao, Y.</span> (2018). Weld pool surface fluctuations sensing in pulsed GMAW. <span class="v">Welding Journal, 97(12), 327s–337s.</span></li>
+    </ol>
+
+    <details class="conf">
+      <summary>Conference presentations (6 oral presentations, AWS Professional Program, FABTECH)</summary>
+      <ol>
+        <li data-n="P1"><span class="me">Cao, Y.</span>, Mattera, G., &amp; Zhang, Y. Addressing label inaccuracy in WAAM anomaly detection via iterative label refinement and unsupervised feature learning. <span class="v">FABTECH 2025, Chicago, IL.</span></li>
+        <li data-n="P2"><span class="me">Cao, Y.</span>, &amp; Zhang, Y. Unsupervised weld penetration prediction for visual monitoring via guided variational autoencoder. <span class="v">FABTECH 2025, Chicago, IL.</span></li>
+        <li data-n="P3"><span class="me">Cao, Y.</span>, &amp; Zhang, Y. Learning human knowledge for robotizing double-electrode GMAW via generative modeling and imitation learning. <span class="v">FABTECH 2025, Chicago, IL.</span></li>
+        <li data-n="P4"><span class="me">Cao, Y.</span>, Mucllari, E., Zhang, Y., &amp; Ye, Q. Weld penetration prediction using GAN with inaccurate labels. <span class="v">FABTECH 2024, Orlando, FL.</span></li>
+        <li data-n="P5"><span class="me">Cao, Y.</span>, &amp; Zhang, Y. Human–robot collaboration for DE-GMAW. <span class="v">FABTECH 2024, Orlando, FL.</span></li>
+        <li data-n="P6"><span class="me">Cao, Y.</span>, Yu, R., Mucllari, E., Ye, Q., &amp; Zhang, Y. Robotizing double-electrode GMAW by learning from human welders. <span class="v">FABTECH 2023, Chicago, IL.</span></li>
+      </ol>
+    </details>
+  </div>
+</section>
+
+<!-- ============ Teaching & Mentoring ============ -->
+<section id="teaching" class="soft">
+  <div class="wrap two">
+    <div>
+      <h2 class="sec"><span class="bar"></span>Teaching</h2>
+      <div class="item"><div class="h">ME 499/599 Data Science for Manufacturing Quality Control <span>Fall 2026</span></div><div class="s">Teaching Assistant · University of Michigan · Instructor: Prof. Chenhui Shao</div><div class="d">Lectures on machine learning and Python data tools; homework, solutions, and coding tutorials.</div></div>
+      <div class="item"><div class="h">EE 599 Applied Model Predictive Control <span>Spring 2025</span></div><div class="s">Teaching Assistant · University of Kentucky · Instructor: Prof. Yuming Zhang</div><div class="d">Helped design the course; lectures and laboratories in which students deploy controllers on a physical welding system.</div></div>
+      <div class="item"><div class="h">EE 415G Electromechanics <span>Spring 2025</span></div><div class="s">Teaching Assistant · University of Kentucky · Instructor: Prof. Yuan Liao</div><div class="d">Programming assignments on machine characteristics and electromechanical dynamics.</div></div>
+    </div>
+    <div>
+      <h2 class="sec"><span class="bar"></span>Mentoring</h2>
+      <div class="item"><div class="h">UROP Research Mentor <span>2026 – Present</span></div><div class="s">Undergraduate Research Opportunity Program, University of Michigan</div><div class="d">Undergraduate project on building a digital twin for a robotic metal 3D printer.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Contact ============ -->
+<section id="contact">
+  <div class="wrap">
+    <h2 class="sec"><span class="bar"></span>Contact</h2>
+    <div class="contact">
+      <div>
+        <p>I am always glad to talk about research collaboration in intelligent manufacturing, robotics, and AI for physical processes. Feel free to reach out by email.</p>
+        <div class="addr">Department of Mechanical Engineering<br>University of Michigan, Ann Arbor, MI 48109</div>
+        <div class="links">
+          <a class="btn solid" href="mailto:caoyu@umich.edu">caoyu@umich.edu</a>
+          <a class="btn" href="https://scholar.google.com/citations?user=Ff6AFQUAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          <a class="btn" href="https://github.com/YueCaoUKY" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Yue (Troy) Cao · Department of Mechanical Engineering, University of Michigan, Ann Arbor, MI 48109</span>
+    <span>Last updated October 2026</span>
+  </div>
+</footer>
+
+<script>
+// All videos play automatically and loop. Each one loads when it first comes into view
+// and pauses while off screen, so the page stays light.
+const io = new IntersectionObserver(entries => {
+  for (const e of entries) {
+    const v = e.target, open = v.closest('.card.open'), inDetail = v.closest('.detail');
+    const shown = inDetail ? !!open : !open;
+    if (e.isIntersecting && shown) { v.preload = 'auto'; v.play().catch(() => {}); }
+    else v.pause();
+  }
+}, { threshold: 0.25 });
+document.querySelectorAll('video').forEach(v => io.observe(v));
+
+// Expand one card at a time to the full width of the grid.
+const cards = [...document.querySelectorAll('.card')];
+function closeCard(card) {
+  card.classList.remove('open');
+  card.querySelectorAll('.detail video').forEach(v => v.pause());
+  card.querySelectorAll('iframe[data-src]').forEach(f => f.removeAttribute('src'));
+  card.querySelectorAll('.sim-cover').forEach(c => c.classList.remove('off'));
+}
+function openCard(card) {
+  cards.filter(c => c !== card && c.classList.contains('open')).forEach(closeCard);
+  card.classList.add('open');
+  card.querySelectorAll('.detail video').forEach(v => { v.preload = 'auto'; v.play().catch(() => {}); });
+  card.querySelectorAll('iframe[data-src]').forEach(f => { if (!f.getAttribute('src')) f.src = f.dataset.src; });
+  const demo = card.querySelector('.demo-video');
+  if (demo) demo.play().catch(() => {});
+  card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+cards.forEach(card => {
+  card.addEventListener('click', e => {
+    if (e.target.closest('.dclose')) { closeCard(card); card.focus(); return; }
+    if (!card.classList.contains('open')) openCard(card);
+  });
+  card.addEventListener('keydown', e => {
+    if ((e.key === 'Enter' || e.key === ' ') && !card.classList.contains('open') && e.target === card) { e.preventDefault(); openCard(card); }
+    if (e.key === 'Escape' && card.classList.contains('open')) { closeCard(card); card.focus(); }
+  });
+});
+
+// Simulation: page scrolling works until the visitor clicks into the 3D view.
+document.querySelectorAll('.sim-cover').forEach(c => c.addEventListener('click', () => c.classList.add('off')));
+
+// Area filter (areas overlap: one project can belong to several).
+const filterBtns = document.querySelectorAll('.filters button');
+filterBtns.forEach(b => {
+  const n = b.dataset.area === 'all' ? cards.length : cards.filter(c => c.dataset.areas.split(' ').includes(b.dataset.area)).length;
+  b.insertAdjacentHTML('beforeend', `<span class="n">${n}</span>`);
+  b.addEventListener('click', () => {
+    filterBtns.forEach(x => x.setAttribute('aria-pressed', x === b));
+    cards.forEach(c => {
+      const show = b.dataset.area === 'all' || c.dataset.areas.split(' ').includes(b.dataset.area);
+      if (!show && c.classList.contains('open')) closeCard(c);
+      c.classList.toggle('hidden', !show);
+    });
+  });
+});
+
+// Molten pool demo: the model on three real processes, or the heat simulation (layout from the Web Demo README).
+const lead = '<b>Every predicted frame is generated by the model from the recorded welding input signals alone; no camera images are given to it.</b> Left: camera recording. Middle: the model, whose heat state keeps building up as the part warms. Right: the same model with its heat state frozen partway through. The middle pool keeps growing with the real one while the frozen one stops, showing that the model captures heat accumulation, not only the current settings. ';
+const captions = {
+  gas_tungsten_arc_welding: lead + 'Gas tungsten arc welding, with the welding speed varied up and down.',
+  gas_metal_arc_welding: lead + 'Gas metal arc welding, with faster travel and a brighter, more turbulent pool.',
+  wire_arc_additive_manufacturing: lead + 'Wire arc additive manufacturing: the settings never change, yet the pool still grows because the part behind the arc keeps getting hotter.',
+  heat_simulation_3d: '<b>The physics behind the model.</b> A three-dimensional heat simulation of an arc moving along a steel plate. Heat keeps spreading into the plate and stays there, so by the end of the pass the plate is far hotter than at the start. This is why the same settings do not give the same pool twice, and it is the effect the model\'s slow heat state represents.'
+};
+document.querySelectorAll('.demo-video').forEach(video => {
+  const root = video.closest('.dbody'), cap = root.querySelector('.demo-caption'), procs = root.querySelector('.proc-tabs');
+  const set = stem => {
+    video.poster = `assets/video/${stem}.jpg`;
+    video.replaceChildren(
+      Object.assign(document.createElement('source'), { src: `assets/video/${stem}.webm`, type: 'video/webm' }),
+      Object.assign(document.createElement('source'), { src: `assets/video/${stem}.mp4`, type: 'video/mp4' }));
+    video.preload = 'auto'; video.load(); video.play().catch(() => {});
+    cap.innerHTML = captions[stem];
+  };
+  cap.innerHTML = captions.gas_tungsten_arc_welding;
+  root.querySelectorAll('.demo-tabs button').forEach(b => b.addEventListener('click', () => {
+    root.querySelectorAll('.demo-tabs button').forEach(x => x.setAttribute('aria-selected', x === b));
+    const sim = b.dataset.win === 'sim';
+    procs.style.visibility = sim ? 'hidden' : 'visible';
+    set(sim ? 'heat_simulation_3d' : procs.querySelector('[aria-selected="true"]').dataset.proc);
+  }));
+  procs.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    procs.querySelectorAll('button').forEach(x => x.setAttribute('aria-selected', x === b));
+    set(b.dataset.proc);
+  }));
+});
+</script>
 </body>
 </html>
